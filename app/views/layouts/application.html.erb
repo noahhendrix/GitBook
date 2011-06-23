@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Gitbook</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Gitbook</title>
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="pagewrap">
+      <div class="wrapper">
+        <div id="header">
+          <div class="hdrl"></div>
+          <div class="hdrr"></div>
 
-<%= yield %>
+          <h1><%= link_to('GitBook', root_path) %></h1>
+          
+          <p class="user">
+            <% if current_user %>
+              Hello, <%= current_user.name %>!
+              <%= link_to 'Logout', signout_path %>
+            <% else %>
+              <%= link_to 'Sign in with Github', '/auth/github' %>
+            <% end %>
+          </p>
+        </div><!-- #header -->
+        
+        <%= yield %>
+        
+        <div id="footer">
+          <p class="owner">
+            <%= link_to('NoahHendrix.com', 'http://noahhendrix.com') %>
+            not affiliated with <%= link_to('GitHub', 'http://github.com') %>
+          </p>
+          <p class="powered-by">
+            powered by <%= link_to 'Celadon Cedar', 'http://devcenter.heroku.com/articles/cedar' %>
+          </p>
+        </div><!-- #footer -->
+        
+      </div><!-- .wrapper -->
+    </div><!-- #pagewrap -->
 
-</body>
+  </body>
 </html>
