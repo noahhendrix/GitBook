@@ -39,6 +39,10 @@ class Repository < ActiveRecord::Base
     def fetch_recent_commits(limit=5)
       Octokit.commits(slug).take_while { |c| Commit.create_unless_found(self, c) }
     end
+    
+    def fetch_recent_issues(limit=5)
+      Octokit.issues(slug).take_while { |i| Issue.create_unless_found(self, i) }
+    end
   
   private
     def self.build_from_github(slug)
