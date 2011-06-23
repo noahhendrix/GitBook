@@ -1,0 +1,6 @@
+<h3>
+  <%= link_to(commit.user.name, user_path(commit.user)) %> commited
+  <%= link_to(truncate(commit.commit_id, length: 20), commit.github_url) %>
+</h3>
+<p><%= commit.message %></p>
+<hr />

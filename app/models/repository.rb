@@ -2,6 +2,8 @@ class Repository < ActiveRecord::Base
   
   #associations
     belongs_to :user
+    has_many :commits, dependent: :destroy
+    has_many :timeline_events, as: :secondary_subject, dependent: :destroy
   
   #attributes
     def slug
@@ -27,6 +29,11 @@ class Repository < ActiveRecord::Base
       rescue Octokit::NotFound => e
         raise ActiveRecord::RecordNotFound
       end
+    end
+  
+  #fetching from github
+    def fetch_recent_commits(limit=5)
+      Octokit.commits(slug).take_while { |c| Commit.create_unless_found(self, c) }
     end
   
   private
