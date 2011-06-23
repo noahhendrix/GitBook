@@ -3,13 +3,17 @@ class Repository < ActiveRecord::Base
   #associations
     belongs_to :user
     has_many :commits, dependent: :destroy
+    
     has_many :timeline_events, as: :secondary_subject, dependent: :destroy
   
   #attributes
-    def slug
-      [user.name, name].join('/')
+    def username
+      user.name
     end
-    alias_method :to_param, :slug
+    
+    def slug
+      [username, name].join('/')
+    end
   
   #class methods
     def self.find_by_username_and_name(username, name)
