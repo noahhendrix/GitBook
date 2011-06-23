@@ -1,7 +1,7 @@
-<h1>Repositories for <%= @user.name %></h1>
-
-<ul>
-  <% @user.repositories.each do |r| %>
-    <li><%= link_to(r.name, repository_path(@user.name, r.name)) %></li>
-  <% end %>
-</ul>
+<% content_block("Repositories for #{@user.name}") do %>
+  <ul>
+    <% @user.repositories.each do |r| %>
+      <li><%= link_to(r.name, repository_path(@user.name, r.name)) %></li>
+    <% end %>
+  </ul>
+<% end %>

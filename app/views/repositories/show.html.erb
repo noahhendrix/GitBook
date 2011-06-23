@@ -1,2 +1,7 @@
-<h1><%= @repository.slug %></h1>
-<p><%= @repository.description %></p>
+<% content_block(@repository.slug) do %>
+  <p>
+    <strong>Description:</strong> <%= @repository.description %>
+  </p>
+  <p><%= link_to('See on GitHub', @repository.url) %></p>
+  <hr />
+<% end %>
