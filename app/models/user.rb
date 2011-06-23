@@ -21,5 +21,20 @@ class User < ActiveRecord::Base
         user.email = auth['user_info']['email']
       end
     end
+    
+    def self.find_or_create_by_name(name)
+      begin
+        find_by_name(name) || create_with_github(name)
+      rescue Octokit::NotFound => e
+        raise ActiveRecord::RecordNotFound
+      end
+    end
+  
+  private
+  
+  def self.create_with_github(name)
+    github_info = Octokit.user(name)
+    create(name: github_info[:login], email: github_info[:email])
+  end
   
 end
