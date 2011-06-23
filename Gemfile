@@ -5,6 +5,9 @@ gem 'rails', '3.1.0.rc4'
 # Authentication
 gem 'omniauth'
 
+# Github Integration
+gem 'octokit'
+
 # Database
 gem 'sqlite3', group: :development
 
