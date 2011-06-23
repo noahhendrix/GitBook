@@ -3,13 +3,16 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0.rc4'
 
 # Authentication
-gem 'omniauth'
+gem 'omniauth', '~> 0.2.6'
 
 # Github Integration
 gem 'octokit'
 
 # Views
 gem 'block_helpers'
+
+# Model Extensions
+gem 'acts_as_commentable'
 
 # Database
 gem 'sqlite3', group: :development
