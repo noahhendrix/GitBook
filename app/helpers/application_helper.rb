@@ -8,10 +8,25 @@ module ApplicationHelper
     [@title, 'GitBook', 'Project Discussion'].compact.join(' - ')
   end
   
+  def linked_repo_slug(repo)
+    [
+      link_to(@repository.username, user_path(@repository.user)),
+      link_to(@repository.name, repo_path(@repository))
+    ].join(' / ')
+  end
+  
+  def user_path(user)
+    repositories_path(user.name)
+  end
+  
+  def repo_path(repo)
+    repository_path(repo.username, repo.name)
+  end
+  
   class ContentBlock < BlockHelpers::Base
     
     def initialize(title, options = {})
-      @title = title
+      @title = title.html_safe
       @float = options[:float] || ''
       @tabs = []
     end

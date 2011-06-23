@@ -1,6 +1,6 @@
 <% title(@repository.slug) %>
 
-<% content_block(@repository.slug) do %>
+<% content_block("#{linked_repo_slug(@repository)}") do %>
   <p>
     <strong>Description:</strong> <%= @repository.description %>
   </p>
