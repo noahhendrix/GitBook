@@ -13,6 +13,7 @@ gem 'block_helpers'
 
 # Model Extensions
 gem 'acts_as_commentable'
+gem 'timeline_fu'
 
 # Database
 gem 'sqlite3', group: :development
