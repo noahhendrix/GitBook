@@ -6,3 +6,4 @@ tmp/
 
 /config/config.yml
 /db/schema.rb
+/Gemfile.lock
