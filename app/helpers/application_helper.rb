@@ -1,5 +1,13 @@
 module ApplicationHelper
   
+  def title(title)
+    @title ||= title
+  end
+  
+  def yield_title
+    [@title, 'GitBook', 'Project Discussion'].compact.join(' - ')
+  end
+  
   class ContentBlock < BlockHelpers::Base
     
     def initialize(title, options = {})
