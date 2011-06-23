@@ -8,6 +8,9 @@ gem 'omniauth'
 # Github Integration
 gem 'octokit'
 
+# Views
+gem 'block_helpers'
+
 # Database
 gem 'sqlite3', group: :development
 
