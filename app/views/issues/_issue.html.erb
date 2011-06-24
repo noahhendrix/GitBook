@@ -2,5 +2,5 @@
   <%= link_to(issue.user.name, user_path(issue.user)) %> created an issue
 </h4>
 <h3><%= issue.title %></h3>
-<p><%= issue.body %></p>
+<p><%= truncate(issue.body, length: 250) %></p>
 <hr />
