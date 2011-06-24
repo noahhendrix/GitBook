@@ -1,0 +1,10 @@
+.event {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+  
+  &.repo-activity {
+    opacity: .5;
+    
+    &:hover, &.focused { opacity: 1.0; }
+  }
+}
