@@ -13,7 +13,7 @@ gem 'block_helpers'
 
 # Model Extensions
 gem 'acts_as_commentable'
-gem 'timeline_fu'
+gem 'timeline_fu', git: 'git://github.com/noahhendrix/timeline_fu.git'
 
 # Database
 gem 'sqlite3', group: :development

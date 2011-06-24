@@ -18,7 +18,8 @@ class Commit < ActiveRecord::Base
   #callbacks
     fires :new_commit, on: :create,
                        actor: :user,
-                       secondary_subject: :repository
+                       secondary_subject: :repository,
+                       occurred_at: :committed_on
   
   #class methods
     def self.create_unless_found(repo, commit_hash)

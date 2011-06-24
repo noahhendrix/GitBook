@@ -14,7 +14,8 @@ class Issue < ActiveRecord::Base
   #callbacks
     fires :new_issue, on: :create,
                       actor: :user,
-                      secondary_subject: :repository
+                      secondary_subject: :repository,
+                      occurred_at: :opened_at
 
   #class methods
     def self.create_unless_found(repo, issue_hash)

@@ -12,7 +12,8 @@ class Pull < ActiveRecord::Base
   #callbacks
     fires :new_pull, on: :create,
                      actor: :user,
-                     secondary_subject: :repository
+                     secondary_subject: :repository,
+                     occurred_at: :requested_at
 
   #class methods
     def self.create_unless_found(repo, pull_hash)
