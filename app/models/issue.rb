@@ -5,7 +5,12 @@ class Issue < ActiveRecord::Base
     belongs_to :repository
   
     has_many :timeline_events, as: :subject, dependent: :destroy
-
+  
+  #attributes
+   def timelined_at
+     opened_at
+   end
+  
   #callbacks
     fires :new_issue, on: :create,
                       actor: :user,

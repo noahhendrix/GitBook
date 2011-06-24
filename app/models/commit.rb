@@ -10,6 +10,10 @@ class Commit < ActiveRecord::Base
     def github_url
       "https://github.com#{url}"
     end
+    
+    def timelined_at
+      committed_on
+    end
   
   #callbacks
     fires :new_commit, on: :create,

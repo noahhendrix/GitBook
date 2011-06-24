@@ -16,6 +16,11 @@ class Repository < ActiveRecord::Base
       [username, name].join('/')
     end
   
+  #methods
+    def sorted_timeline
+      timeline_events.map(&:subject).sort_by!(&:timelined_at)
+    end
+  
   #class methods
     def self.find_by_username_and_name(username, name)
       joins(:user).where('users.name LIKE ? AND repositories.name LIKE ?', username, name).first
