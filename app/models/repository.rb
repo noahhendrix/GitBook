@@ -37,6 +37,18 @@ class Repository < ActiveRecord::Base
     end
   
   #fetching from github
+    def fetch_recent_activity
+      fetch_recent_commits
+      fetch_recent_issues
+      fetch_recent_pulls
+    end
+  
+  private
+    def self.build_from_github(slug)
+      github_info = Octokit.repo(slug)
+      new(name: github_info[:name], description: github_info[:description], url: github_info[:url])
+    end
+    
     def fetch_recent_commits(limit=5)
       Octokit.commits(slug).take_while { |c| Commit.create_unless_found(self, c) }
     end
@@ -44,11 +56,9 @@ class Repository < ActiveRecord::Base
     def fetch_recent_issues(limit=5)
       Octokit.issues(slug).take_while { |i| Issue.create_unless_found(self, i) }
     end
-  
-  private
-    def self.build_from_github(slug)
-      github_info = Octokit.repo(slug)
-      new(name: github_info[:name], description: github_info[:description], url: github_info[:url])
+    
+    def fetch_recent_pulls(limit=5)
+      Octokit.pulls(slug).take_while { |p| Pull.create_unless_found(self, p) }
     end
   
 end
