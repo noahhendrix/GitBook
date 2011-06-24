@@ -1,5 +1,6 @@
 <h4>
   <%= link_to(issue.user.name, user_path(issue.user)) %> created an issue
+  <%= time_ago_or_exact_date(issue.opened_at) %>
 </h4>
 <h3><%= issue.title %></h3>
 <p><%= truncate(issue.body, length: 250) %></p>

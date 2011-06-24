@@ -1,6 +1,7 @@
-<h3>
+<h4>
   <%= link_to(commit.user.name, user_path(commit.user)) %> commited
-  <%= link_to(truncate(commit.commit_id, length: 20), commit.github_url) %>
-</h3>
+  <%= time_ago_or_exact_date(commit.committed_on) %>
+</h4>
+<h3><%= link_to(commit.commit_id, commit.github_url) %></h3>
 <p><%= commit.message %></p>
 <hr />
