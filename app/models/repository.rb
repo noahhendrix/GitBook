@@ -18,7 +18,7 @@ class Repository < ActiveRecord::Base
   
   #class methods
     def self.find_by_username_and_name(username, name)
-      joins(:user).where('users.name = ? AND repositories.name = ?', username, name).first
+      joins(:user).where('users.name LIKE ? AND repositories.name LIKE ?', username, name).first
     end
     
     def self.create_by_username_and_name(username, name)
