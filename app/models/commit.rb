@@ -19,7 +19,8 @@ class Commit < ActiveRecord::Base
   #callbacks
     fires :new_commit, on: :create,
                        actor: :user,
-                       secondary_subject: :repository,
+                       subject: :repository,
+                       secondary_subject: :self,
                        occurred_at: :committed_on
   
   #class methods

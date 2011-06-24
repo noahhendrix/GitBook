@@ -4,6 +4,8 @@ class Pull < ActiveRecord::Base
   #association
     belongs_to :user
     belongs_to :repository
+    
+    has_many :timeline_events, as: :subject, dependent: :destroy
   
   #attributes
    def timelined_at
@@ -13,7 +15,8 @@ class Pull < ActiveRecord::Base
   #callbacks
     fires :new_pull, on: :create,
                      actor: :user,
-                     secondary_subject: :repository,
+                     subject: :repository,
+                     secondary_subject: :self,
                      occurred_at: :requested_at
 
   #class methods

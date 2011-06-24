@@ -15,7 +15,8 @@ class Issue < ActiveRecord::Base
   #callbacks
     fires :new_issue, on: :create,
                       actor: :user,
-                      secondary_subject: :repository,
+                      subject: :repository,
+                      secondary_subject: :self,
                       occurred_at: :opened_at
 
   #class methods
