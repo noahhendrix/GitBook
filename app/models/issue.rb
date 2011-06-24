@@ -1,5 +1,6 @@
 class Issue < ActiveRecord::Base
-
+  acts_as_commentable
+  
   #association
     belongs_to :user
     belongs_to :repository

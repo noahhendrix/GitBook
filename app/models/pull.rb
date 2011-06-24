@@ -1,4 +1,5 @@
 class Pull < ActiveRecord::Base
+  acts_as_commentable
   
   #association
     belongs_to :user

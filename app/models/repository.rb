@@ -1,4 +1,5 @@
 class Repository < ActiveRecord::Base
+  acts_as_commentable
   
   #associations
     belongs_to :user
