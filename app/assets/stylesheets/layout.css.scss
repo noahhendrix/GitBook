@@ -352,4 +352,30 @@ a {
     
   }
   
+  &.sidebarred {
+    .bendl {
+      background-image: url(/assets/layout/bendsb.gif);
+      width: 191px;
+    }
+    
+    .content {
+      background: url(/assets/layout/sidebar.gif) 0 0 repeat-y;
+      overflow: hidden;
+      padding: 0;
+      
+      .sidebar {
+        float: left;
+        font-size: 11px;
+        width: 190px;
+        
+        p {
+          line-height: 18px;
+          padding: 0 13px 15px;
+        }
+      }
+      
+      .sidebar-content { padding: 15px 20px 15px 210px; }
+    }
+  }
+  
 } /* .block */

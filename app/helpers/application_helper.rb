@@ -32,7 +32,7 @@ module ApplicationHelper
     def initialize(title, options = {})
       @title = title.html_safe
       @float = options[:float] || ''
-      @tabs = []
+      @sidebar = options[:sidebar] || nil
     end
     
     def display(body)
@@ -46,6 +46,7 @@ module ApplicationHelper
     def css_classes
       list = ['block', @float]
       list << 'small' if @float.present?
+      list << 'sidebarred' if @sidebar.present?
       list.join(' ')
     end
     
@@ -58,7 +59,15 @@ module ApplicationHelper
     end
     
     def render_body(body)
+      if @sidebar.present?
+        body = render_sidebar + content_tag(:div, body, class: 'sidebar-content')
+      end
+      
       content_tag(:div, body, class: 'content')
+    end
+    
+    def render_sidebar
+      content_tag(:div, content_tag(:p, @sidebar.html_safe), class: 'sidebar') if @sidebar.present?
     end
     
     def render_footer

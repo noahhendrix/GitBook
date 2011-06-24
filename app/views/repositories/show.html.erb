@@ -1,12 +1,8 @@
 <% title(@repository.slug) %>
 
-<% content_block("#{linked_repo_slug(@repository)}") do %>
-  <p>
-    <strong>Description:</strong> <%= @repository.description %>
-  </p>
-  <p><%= link_to('See on GitHub', @repository.url) %></p>
-  <hr />
+<% content_block("#{linked_repo_slug(@repository)}", sidebar: "#{@repository.description}<br /><br />#{link_to('See on GitHub', @repository.url)}") do %>
   
-  <%= render @timeline.map(&:secondary_subject) %>
-  <%= paginate @timeline %>
+    <%= render @timeline.map(&:secondary_subject) %>
+    <%= paginate @timeline %>
+    
 <% end %>
