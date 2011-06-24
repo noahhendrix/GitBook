@@ -158,6 +158,34 @@ a {
   } /* .wrapper */
 } /* #pagewrap */
 
+.message {
+  background-color: #ecf9ff;
+  border: 1px solid #bbdbe0;
+  border-radius: 3px;
+  font-weight: bold;
+  margin: 10px 0;
+  overflow: hidden;
+  padding: 10px 15px;
+  
+  p {
+    float: left;
+    padding: 0;
+    width: 93%;
+  }
+  
+  &.error {
+    background-color: #e9c59b;
+    border-color: #e9c59b;
+    color: #e3302c;
+  }
+  
+  &.notice {
+    background-color: #bfde84;
+    border-color: #bfde84;
+    color: #508600;
+  }
+}
+
 /* styling for blocks */
 .block {
   background: #fff url(/assets/layout/bnd.gif) bottom center repeat-x;
