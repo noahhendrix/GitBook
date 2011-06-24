@@ -7,5 +7,6 @@
   <p><%= link_to('See on GitHub', @repository.url) %></p>
   <hr />
   
-  <%= render @repository.sorted_timeline %>
+  <%= render @timeline.map(&:subject) %>
+  <%= paginate @timeline %>
 <% end %>

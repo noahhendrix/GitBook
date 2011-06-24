@@ -17,8 +17,8 @@ class Repository < ActiveRecord::Base
     end
   
   #methods
-    def sorted_timeline
-      timeline_events.map(&:subject).sort_by!(&:timelined_at)
+    def sorted_timeline(page=0, per=15)
+      timeline_events.page(page).per(per)
     end
   
   #class methods

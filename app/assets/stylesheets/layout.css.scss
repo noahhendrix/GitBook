@@ -265,6 +265,35 @@ a {
       height: 1px;
       margin-bottom: 15px;
     }
+    
+    .pagination {
+      float: right;
+      font-size: 10px;
+      font-weight: bold;
+      overflow: hidden;
+      padding-bottom: 15px;
+      padding-top: 1px;
+      text-align: right;
+      width: 500px;
+      
+      a, .current {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin: 0 1px;
+        padding: 3px 6px;
+      }
+      a:hover {
+        background: #ec8526;
+        border: 1px solid #d77011;
+        color: #fff;
+      }
+      
+      .current {
+        background: #39a3e6;
+        border-color: #0082d5;
+        color: #fff;
+      }
+    } /* .pagination */
   } /* .content */
   
   .bendl, .bendr {

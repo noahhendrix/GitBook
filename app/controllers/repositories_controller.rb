@@ -8,6 +8,7 @@ class RepositoriesController < ApplicationController
 
   def show
     @repository = Repository.find_or_create(params[:username], params[:repository])
+    @timeline = @repository.sorted_timeline(params[:page])
     respond_with(@repository)
   end
 
