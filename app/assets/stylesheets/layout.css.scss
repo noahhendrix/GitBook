@@ -322,6 +322,61 @@ a {
         color: #fff;
       }
     } /* .pagination */
+    
+    form {
+      label {
+        color: #555;
+        font-family: "Lucida Grande", Verdana, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      
+      input[type=text], textarea {
+        background-color: #fefefe;
+        border: 1px solid #bbb;
+        border-radius: 3px;
+        font-family: "Lucida Grande", Verdana, sans-serif;
+        font-size: 14px;
+        color: #333;
+        outline: none;
+        padding: 7px;
+        vertical-align: middle;
+        width: 410px;
+        
+        &:hover, &:focus { background-color: #fff7c0; }
+      }
+      
+      textarea {
+        height: 50px;
+        padding: 5px;
+        width: 98%;
+        
+        &:focus{ height: 100px; }
+      }
+      
+      input[type=submit] {
+        background: url(/assets/layout/btns.gif) top center no-repeat;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        font-family: "Titillium800", "Trebuchet MS", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        height: 30px;
+        margin-right: 10px;
+        line-height: 30px;
+        text-shadow: 1px 1px 0 #0a5482;
+        text-transform: uppercase;
+        vertical-align: middle;
+        width: 85px;
+        
+        &:hover {
+          background-image: url(/assets/layout/btns_.gif)
+        }
+      }
+    } /* form */
   } /* .content */
   
   .bendl, .bendr {
