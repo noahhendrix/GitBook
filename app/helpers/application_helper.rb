@@ -23,6 +23,10 @@ module ApplicationHelper
     repository_path(repo.username, repo.name)
   end
   
+  def generate_post_comment_path(comment)
+    post_comment_path(comment.commentable.class.to_s.tableize, comment.commentable, comment)
+  end
+  
   def time_ago_or_exact_date(datetime)
     datetime < 1.week.ago ? datetime.strftime('on %B %d, %Y at %I:%M%P') : "#{time_ago_in_words(datetime)} ago"
   end

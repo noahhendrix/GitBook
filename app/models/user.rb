@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
   #associations
     has_many :repositories
+    has_many :comments
   
   #attributes
     def avatar_url(size=48)

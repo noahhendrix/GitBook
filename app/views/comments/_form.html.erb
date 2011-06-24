@@ -1,0 +1,7 @@
+<%= form_for(comment, url: generate_post_comment_path(comment)) do |f| %>
+  <p>
+    <%= f.text_area :comment, placeholder: 'Hello World!' %>
+  </p>
+  <p><%= f.submit 'Post' %></p>
+<% end %>
+<hr />
