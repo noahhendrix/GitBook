@@ -1,3 +1,5 @@
+require 'activity_job'
+
 class Repository < ActiveRecord::Base
   acts_as_commentable
   
@@ -24,19 +26,9 @@ class Repository < ActiveRecord::Base
     def sorted_timeline(page=0, per=15)
       timeline_events.page(page).per(per)
     end
-    
-    #a note that says we are fetching repo history
-    def create_notice
-      notices.create(message: 'We are fetching the history for this repository. Check back later.')
-    end
   
   #callbacks
-    after_create :fetch_recent_activity
-    
-    fires :fetching_activity, on: :create,
-                              subject: :self,
-                              secondary_subject: :create_notice,
-                              occurred_at: :fetching_buffer
+    after_create lambda { Delayed::Job.enqueue(ActivityJob.new(self)) }
   
   #class methods
     def self.find_by_username_and_name(username, name)
@@ -58,14 +50,15 @@ class Repository < ActiveRecord::Base
       end
     end
   
+  #constants
+    ENQUE_NOTICE = 'We are fetching the history for this repository. Check back later.'
+  
   #fetching from github
     def fetch_recent_activity
       fetch_recent_commits
       fetch_recent_issues
       fetch_recent_pulls
-      remove_notice
     end
-    handle_asynchronously :fetch_recent_activity
   
   private
     def self.build_from_github(slug)
@@ -83,18 +76,6 @@ class Repository < ActiveRecord::Base
     
     def fetch_recent_pulls(limit=5)
       Octokit.pulls(slug).take_while { |p| Pull.create_unless_found(self, p) }
-    end
-    
-    #when a repo is created we fire off an event to say we are fetching
-    #it's data, this is how far in the futre that event occured so
-    #that it always shows at the top of the timeline
-    def fetching_buffer
-      3.weeks.from_now
-    end
-    
-    #clear the fetching noticee
-    def remove_notice
-      notices.destroy_all
     end
   
 end
