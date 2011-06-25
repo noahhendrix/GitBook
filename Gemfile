@@ -19,6 +19,9 @@ gem 'kaminari'
 # Database
 gem 'sqlite3', group: :development
 
+# Background Jobs
+gem 'delayed_job'
+
 # Asset template engines
 gem 'sass'
 gem 'coffee-script'
