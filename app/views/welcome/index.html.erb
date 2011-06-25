@@ -1,1 +1,19 @@
 <% title('Welcome') %>
+
+<% content_block 'Welcome!', float: 'left' do %>
+  <h1>What is GitBook?</h1>
+  
+  <p><strong>GitBook</strong> is a social layer over your GitHub projects. We pull in all
+  your repositories activity (commits, pull requests, etc.) and mix in comments from
+  the users of your project. This enables a rich discussion that will help your project
+  grow based on the feedback of those who use it.</p>
+<% end %>
+
+<% content_block 'Welcome!', float: 'right' do %>
+  <h1>How do I use GitBook?</h1>
+  
+  <p><strong>GitBook</strong> follows a similar structure to GitHub. When you wan to see
+  the GitBook page for a GitHub project, just change the URL from github.com to gitbook.com,
+  keeping the user and repository name in tact and you'll be magically transported to the
+  GitBook page for that project. We'll take care of pulling in old activity from there.</p>
+<% end %>
