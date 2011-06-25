@@ -29,6 +29,10 @@ class Repository < ActiveRecord::Base
     def create_notice
       notices.create(message: 'We are fetching the history for this repository. Check back later.')
     end
+  
+  #callbacks
+    after_create :fetch_recent_activity
+    
     fires :fetching_activity, on: :create,
                               subject: :self,
                               secondary_subject: :create_notice,
@@ -61,6 +65,7 @@ class Repository < ActiveRecord::Base
       fetch_recent_pulls
       remove_notice
     end
+    handle_asynchronously :fetch_recent_activity
   
   private
     def self.build_from_github(slug)
@@ -78,6 +83,13 @@ class Repository < ActiveRecord::Base
     
     def fetch_recent_pulls(limit=5)
       Octokit.pulls(slug).take_while { |p| Pull.create_unless_found(self, p) }
+    end
+    
+    #when a repo is created we fire off an event to say we are fetching
+    #it's data, this is how far in the futre that event occured so
+    #that it always shows at the top of the timeline
+    def fetching_buffer
+      3.weeks.from_now
     end
     
     #clear the fetching noticee
