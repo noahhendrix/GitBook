@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
         find_by_name(name) || create_with_github(name)
       rescue Octokit::NotFound => e
         raise ActiveRecord::RecordNotFound
+      rescue Octokit::Unauthorized => e
+        return nil
       end
     end
   

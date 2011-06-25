@@ -28,7 +28,7 @@ class Commit < ActiveRecord::Base
       return false if find_by_commit_id(commit_hash[:id])
       create(
         repository_id: repo.id,
-        user_id: User.find_or_create_by_name(commit_hash[:committer][:login]).id,
+        user_id: User.find_or_create_by_name(commit_hash[:committer][:login]).try(:id),
         commit_id: commit_hash[:id],
         committed_on: commit_hash[:committed_date],
         url: commit_hash[:url],

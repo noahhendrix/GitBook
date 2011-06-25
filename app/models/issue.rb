@@ -25,7 +25,7 @@ class Issue < ActiveRecord::Base
       create(
         number: issue_hash[:number],
         repository_id: repo.id,
-        user_id: User.find_or_create_by_name(issue_hash[:user]).id,
+        user_id: User.find_or_create_by_name(issue_hash[:user]).try(:id),
         title: issue_hash[:title],
         body: issue_hash[:body],
         state: issue_hash[:state],

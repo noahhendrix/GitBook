@@ -25,7 +25,7 @@ class Pull < ActiveRecord::Base
       create(
         number: pull_hash[:number],
         repository_id: repo.id,
-        user_id: User.find_or_create_by_name(pull_hash[:user][:login]).id,
+        user_id: User.find_or_create_by_name(pull_hash[:user][:login]).try(:id),
         title: pull_hash[:title],
         body: pull_hash[:body],
         requested_at: pull_hash[:created_at]
