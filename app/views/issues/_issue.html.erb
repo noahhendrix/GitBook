@@ -1,6 +1,6 @@
 <div class="event repo-activity">
   <h4>
-    <%= link_to(issue.user.name, user_path(issue.user)) %> created an issue
+    <%= link_to_user(issue.user) %> created an issue
     <%= time_ago_or_exact_date(issue.opened_at) %>
   </h4>
   <h3><%= issue.title %></h3>

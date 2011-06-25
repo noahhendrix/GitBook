@@ -10,9 +10,14 @@ module ApplicationHelper
   
   def linked_repo_slug(repo)
     [
-      link_to(@repository.username, user_path(@repository.user)),
-      link_to(@repository.name, repo_path(@repository))
+      link_to_user(repo.user),
+      link_to(repo.name, repo_path(repo))
     ].join(' / ')
+  end
+  
+  def link_to_user(user)
+    return 'Unknown' if user.blank?
+    link_to(user.name, user_path(user))
   end
   
   def user_path(user)
