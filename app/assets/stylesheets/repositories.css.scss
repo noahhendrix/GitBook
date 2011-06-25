@@ -7,4 +7,13 @@
     
     &:hover, &.focused { opacity: 1.0; }
   }
+  
+  &.notice {
+    p { font-size: 14px; }
+    
+    img {
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+  }
 }

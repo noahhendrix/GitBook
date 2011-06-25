@@ -5,6 +5,7 @@ class Repository < ActiveRecord::Base
     belongs_to :user
     has_many :commits, dependent: :destroy
     has_many :issues, dependent: :destroy
+    has_many :notices, dependent: :destroy
     
     has_many :timeline_events, as: :subject, dependent: :destroy
   
@@ -21,6 +22,15 @@ class Repository < ActiveRecord::Base
     def sorted_timeline(page=0, per=15)
       timeline_events.page(page).per(per)
     end
+    
+    #a note that says we are fetching repo history
+    def create_notice
+      notices.create(message: 'We are fetching the history for this repository. Check back later.')
+    end
+    fires :fetching_activity, on: :create,
+                              subject: :self,
+                              secondary_subject: :create_notice,
+                              occurred_at: :fetching_buffer
   
   #class methods
     def self.find_by_username_and_name(username, name)
@@ -47,6 +57,7 @@ class Repository < ActiveRecord::Base
       fetch_recent_commits
       fetch_recent_issues
       fetch_recent_pulls
+      remove_notice
     end
   
   private
@@ -65,6 +76,11 @@ class Repository < ActiveRecord::Base
     
     def fetch_recent_pulls(limit=5)
       Octokit.pulls(slug).take_while { |p| Pull.create_unless_found(self, p) }
+    end
+    
+    #clear the fetching noticee
+    def remove_notice
+      notices.destroy_all
     end
   
 end
