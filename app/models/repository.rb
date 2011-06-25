@@ -3,8 +3,10 @@ class Repository < ActiveRecord::Base
   
   #associations
     belongs_to :user
+    
     has_many :commits, dependent: :destroy
     has_many :issues, dependent: :destroy
+    has_many :pulls, dependent: :destroy
     has_many :notices, dependent: :destroy
     
     has_many :timeline_events, as: :subject, dependent: :destroy
