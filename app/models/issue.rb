@@ -5,7 +5,7 @@ class Issue < ActiveRecord::Base
     belongs_to :user
     belongs_to :repository
   
-    has_many :timeline_events, as: :subject, dependent: :destroy
+    has_many :timeline_events, as: :secondary_subject, dependent: :destroy
   
   #attributes
    def timelined_at
