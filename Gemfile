@@ -18,6 +18,7 @@ gem 'kaminari'
 
 # Database
 gem 'sqlite3', group: :development
+gem 'pg', group: :production
 
 # Background Jobs
 gem 'delayed_job'
