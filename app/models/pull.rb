@@ -7,11 +7,6 @@ class Pull < ActiveRecord::Base
     
     has_many :timeline_events, as: :secondary_subject, dependent: :destroy
   
-  #attributes
-   def timelined_at
-     requested_at
-   end
-  
   #callbacks
     fires :new_pull, on: :create,
                      actor: :user,

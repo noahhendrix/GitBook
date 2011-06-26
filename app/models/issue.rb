@@ -8,8 +8,8 @@ class Issue < ActiveRecord::Base
     has_many :timeline_events, as: :secondary_subject, dependent: :destroy
   
   #attributes
-   def timelined_at
-     opened_at
+   def github_url
+    "https://github.com/#{repository.slug}/issues/#{number}"
    end
   
   #callbacks
