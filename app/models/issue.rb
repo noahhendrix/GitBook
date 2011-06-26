@@ -21,15 +21,15 @@ class Issue < ActiveRecord::Base
 
   #class methods
     def self.create_unless_found(repo, issue_hash)
-      return false if find_by_repository_id_and_number(repo.id, issue_hash[:number])
-      create(
-        number: issue_hash[:number],
-        repository_id: repo.id,
-        user_id: User.find_or_create_by_name(issue_hash[:user]).try(:id),
-        title: issue_hash[:title],
-        body: issue_hash[:body],
-        state: issue_hash[:state],
-        opened_at: issue_hash[:created_at]
-      )
+      issue = repo.issues.find_or_initialize_by_number(issue_hash[:number])
+      return false if issue.persisted?
+      
+      issue.tap do |i|
+        i.username = issue_hash[:user]
+        i.title = issue_hash[:title]
+        i.body = issue_hash[:body]
+        i.state = issue_hash[:state]
+        i.opened_at = issue_hash[:created_at]
+      end.save
     end
 end

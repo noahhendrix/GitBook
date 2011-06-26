@@ -10,14 +10,14 @@ module ApplicationHelper
   
   def linked_repo_slug(repo)
     [
-      link_to_user(repo.user),
+      link_to(repo.username, user_path(repo.user)),
       link_to(repo.name, repo_path(repo))
     ].join(' / ')
   end
   
-  def link_to_user(user)
-    return 'Unknown' if user.blank?
-    link_to(user.name, user_path(user))
+  def link_to_user(username)
+    return 'Unknown' if username.blank?
+    link_to(username, "https://github.com/#{username}")
   end
   
   def user_path(user)
