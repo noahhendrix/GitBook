@@ -4,7 +4,7 @@ class CreateCommits < ActiveRecord::Migration
       t.string :username
       t.integer :repository_id
       t.string :commit_id
-      t.datetime :committed_on
+      t.datetime :committed_at
       t.string :url
       t.text :message
 

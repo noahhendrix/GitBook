@@ -1,7 +1,7 @@
 <div class="event repo-activity">
   <h4>
     <%= link_to_user(commit.username) %> commited
-    <%= time_ago_or_exact_date(commit.committed_on) %>
+    <%= time_ago_or_exact_date(commit.committed_at) %>
   </h4>
   <h3><%= link_to(truncate(commit.commit_id, length: 20), commit.github_url, title: commit.commit_id) %></h3>
   <p><%= commit.message %></p>
