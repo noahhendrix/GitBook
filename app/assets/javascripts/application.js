@@ -30,6 +30,10 @@ $(function() {
   
   //keyboard navigation through events
   $(document.documentElement).keyup(function(event) {
+    valid_keycodes = new Array(38, 40, 74, 75);
+    if ($.inArray(event.keyCode, valid_keycodes) == -1 || $(event.target).is(':input'))
+      return;
+    
     var $selected = $events.filter('.focused').first();
     var $next;
     
