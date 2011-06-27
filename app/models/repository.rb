@@ -15,6 +15,10 @@ class Repository < ActiveRecord::Base
     def slug
       [username, name].join('/')
     end
+    
+    def source_url
+      "https://github.com/#{source}"
+    end
   
   #methods
     def sorted_timeline(page=0, per=15)
