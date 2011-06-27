@@ -1,6 +1,6 @@
 <div class="event">
   <h4>
-    <%= link_to_user(comment.user) %> commented
+    <%= link_to_user(comment.user.name) %> commented
     <%= time_ago_or_exact_date(comment.created_at) %>
   </h4>
   <p><%= truncate(comment.comment, length: 250) %></p>
