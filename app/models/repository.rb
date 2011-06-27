@@ -5,7 +5,6 @@ class Repository < ActiveRecord::Base
   
   #associations
     has_many :repository_events, dependent: :destroy
-    has_many :comments, dependent: :destroy
     has_many :notices, dependent: :destroy
     
     has_many :timeline_events, as: :subject, dependent: :destroy
