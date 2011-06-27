@@ -4,9 +4,8 @@ class Repository < ActiveRecord::Base
   acts_as_commentable
   
   #associations
-    has_many :commits, dependent: :destroy
-    has_many :issues, dependent: :destroy
-    has_many :pulls, dependent: :destroy
+    has_many :activity_events, dependent: :destroy
+    has_many :comments, dependent: :destroy
     has_many :notices, dependent: :destroy
     
     has_many :timeline_events, as: :subject, dependent: :destroy
