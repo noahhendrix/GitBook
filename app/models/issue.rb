@@ -9,7 +9,7 @@ class Issue < ActiveRecord::Base
   
   #attributes
    def github_url
-    "https://github.com/#{repository.slug}/issues/#{number}"
+    "#{Repository::GITHUB_BASE_URL}/#{repository.slug}/issues/#{number}"
    end
   
   #callbacks

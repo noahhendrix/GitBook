@@ -17,7 +17,7 @@ module ApplicationHelper
   
   def link_to_user(username = nil, text = nil)
     return 'Unknown' if username.blank?
-    link_to((text || username), "https://github.com/#{username}")
+    link_to((text || username), "#{Repository::GITHUB_BASE_URL}/#{username}")
   end
   
   def user_path(username)

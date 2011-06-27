@@ -17,7 +17,7 @@ class Repository < ActiveRecord::Base
     end
     
     def source_url
-      "https://github.com/#{source}"
+      "#{GITHUB_BASE_URL}/#{source}"
     end
   
   #methods
@@ -39,6 +39,7 @@ class Repository < ActiveRecord::Base
     end
   
   #constants
+    GITHUB_BASE_URL = 'https://github.com'
     ENQUE_NOTICE = 'We are fetching the history for this repository. Check back later.'
   
   #fetching from github

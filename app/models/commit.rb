@@ -9,7 +9,7 @@ class Commit < ActiveRecord::Base
   
   #attributes
     def github_url
-      "https://github.com#{url}"
+      "#{Repository::GITHUB_BASE_URL}#{url}"
     end
   
   #callbacks
