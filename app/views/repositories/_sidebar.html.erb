@@ -1,0 +1,25 @@
+<% if repository.source? %>
+  <p>Forked from <%= link_to(repository.source, repository.source_url) %></p>
+<% end %>
+
+<% if repository.description? %>
+  <p><%= repository.description %></p>
+<% end %>
+
+<% if repository.homepage? %>
+  <p><%= link_to(repository.homepage) %></p>
+<% end %>
+
+<h3>Stats</h3>
+<ul>
+  <li>Language: <%= repository.language %></li>
+  
+  <% repo_stats.each do |attribute, path| %>
+    <% if repository.send(attribute) > 0 %>
+      <li>
+        <%= link_to(pluralize(repository.send(attribute), attribute.to_s.singularize),
+                    "#{repository.url}/#{path}") %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

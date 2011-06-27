@@ -36,6 +36,14 @@ module ApplicationHelper
     datetime < 1.week.ago ? datetime.strftime('on %B %d, %Y at %I:%M%P') : "#{time_ago_in_words(datetime)} ago"
   end
   
+  def repo_stats
+    {
+      forks: 'network',
+      open_issues: 'issues',
+      watchers: 'watchers'
+    }
+  end
+  
   class ContentBlock < BlockHelpers::Base
     
     def initialize(title, options = {})

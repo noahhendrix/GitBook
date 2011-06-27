@@ -421,11 +421,13 @@ a {
       .sidebar {
         float: left;
         font-size: 11px;
+        padding: 0 13px;
         width: 190px;
         
         p {
           line-height: 18px;
-          padding: 0 13px 15px;
+          overflow: hidden;
+          width: 175px;
         }
       }
       
