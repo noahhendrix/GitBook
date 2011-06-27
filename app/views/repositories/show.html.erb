@@ -1,6 +1,8 @@
 <% title(@repository.slug) %>
 
-<% content_block("#{linked_repo_slug(@repository)}", sidebar: "#{@repository.description}<br /><br />#{link_to('See on GitHub', @repository.url)}") do %>
+<% content_block("#{linked_repo_slug(@repository)}",
+                 sidebar: @repository.try(:description),
+                 link: link_to('See on GitHub', @repository.url)) do %>
   
     <%= render 'comments/form', comment: @repository.comments.new %>
     <%= render @timeline.map(&:secondary_subject) %>

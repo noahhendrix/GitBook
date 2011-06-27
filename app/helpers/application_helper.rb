@@ -42,6 +42,7 @@ module ApplicationHelper
       @title = title.html_safe
       @float = options[:float] || ''
       @sidebar = options[:sidebar] || nil
+      @link = options[:link]
     end
     
     def display(body)
@@ -63,7 +64,8 @@ module ApplicationHelper
       content_tag(:div, class: 'head') do
         content_tag(:div, '', class: 'bheadl') +
         content_tag(:div, '', class: 'bheadr') +
-        content_tag(:h2, @title)
+        content_tag(:h2, @title) + 
+        render_link
       end
     end
     
@@ -77,6 +79,10 @@ module ApplicationHelper
     
     def render_sidebar
       content_tag(:div, content_tag(:p, @sidebar.html_safe), class: 'sidebar') if @sidebar.present?
+    end
+    
+    def render_link
+      content_tag(:ul, content_tag(:li, @link), class: 'tabs')
     end
     
     def render_footer
