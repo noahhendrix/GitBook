@@ -22,7 +22,7 @@ class Repository < ActiveRecord::Base
     end
   
   #callbacks
-    before_create :update_with_repository_info
+    before_create :fetch_repository_info
     after_create -> { Delayed::Job.enqueue(ActivityJob.new(self)) }
   
   #create methods
@@ -67,8 +67,9 @@ class Repository < ActiveRecord::Base
     end
     alias_method :check_for_repository, :repository_info
     
-    def update_with_repository_info
-      [:name, :description, :url].each do |attribute|
+    def fetch_repository_info
+      [:name, :description, :url, :homepage, :language, :forks,
+       :open_issues, :watchers, :source].each do |attribute|
         send("#{attribute.to_s}=", repository_info[attribute])
       end
     end
