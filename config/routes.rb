@@ -8,7 +8,9 @@ Gitbook::Application.routes.draw do
   delete '/:commentable/:commentable_id/comments/:id' => 'comments#destroy',
         :as => :destroy_comment
   
-  match '/:username/:repository/*misc' => 'repositories#show'
+  match '/:username/:repository/page/:page' => 'repositories#show',
+        constraints: { page: /\d+/ }
+  match '/:username/:repository/*misc' => redirect("/%{username}/%{repository}")
   match '/:username/:repository' => 'repositories#show', as: :repository
   match '/:username' => 'repositories#index', as: :repositories
 
