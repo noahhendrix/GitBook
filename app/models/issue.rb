@@ -8,7 +8,7 @@ class Issue < ActiveRecord::Base
     has_many :timeline_events, as: :secondary_subject, dependent: :destroy
   
   #attributes
-   def github_url
+   def url
     "#{Repository::GITHUB_BASE_URL}/#{repository.slug}/issues/#{number}"
    end
   

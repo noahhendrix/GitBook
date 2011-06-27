@@ -1,6 +1,7 @@
 <div class="event repo-activity">
   <h4>
-    <%= link_to_user(pull.username) %> sent a pull request
+    <%= link_to_user(pull.username) %>
+    sent pull request <%= link_to("##{pull.number}", pull.url) %>
     <%= time_ago_or_exact_date(pull.requested_at) %>
   </h4>
   <h3><%= pull.title %></h3>

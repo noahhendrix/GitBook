@@ -8,8 +8,8 @@ class Commit < ActiveRecord::Base
     has_many :timeline_events, as: :secondary_subject, dependent: :destroy
   
   #attributes
-    def github_url
-      "#{Repository::GITHUB_BASE_URL}#{url}"
+    def url
+      "#{Repository::GITHUB_BASE_URL}#{read_attribute(:url)}"
     end
   
   #callbacks

@@ -24,6 +24,7 @@ class Pull < ActiveRecord::Base
         username: pull_hash[:user][:login],
         title: pull_hash[:title],
         body: pull_hash[:body],
+        url: pull_hash[:html_url],
         requested_at: pull_hash[:created_at]
       )
     end
