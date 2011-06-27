@@ -1,3 +1,17 @@
+form {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+  
+  img.avatar {
+    border-radius: 3px;
+    float: left;
+  }
+  p {
+    padding-left: 60px;
+    width: 90%;
+  }
+}
+
 .event {
   border-bottom: 1px solid #ddd;
   margin-bottom: 15px;

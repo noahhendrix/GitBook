@@ -1,7 +1,16 @@
-<%= form_for(comment, url: generate_post_comment_path(comment)) do |f| %>
-  <p>
-    <%= f.text_area :comment, placeholder: 'Hello World!' %>
-  </p>
-  <p><%= f.submit 'Post' %></p>
+<% if current_user %>
+  <%= form_for(comment, url: generate_post_comment_path(comment)) do |f| %>
+    <h2>Say something&hellip;</h2>
+    <%= image_tag(current_user.avatar_url, class: 'avatar') %>
+    <p>
+      <%= f.text_area :comment, placeholder: 'Hello World!' %>
+    </p>
+    <p>
+      <%= f.submit 'Post' %>
+      signed in as <%= link_to_user(current_user.name) %>,
+      you can <%= link_to 'sign out', signout_path %>
+    </p>
+  <% end %>
+<% else %>
+  <p><%= link_to 'Sign in with Github to comment', '/auth/github' %></p>
 <% end %>
-<hr />

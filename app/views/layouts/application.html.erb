@@ -22,12 +22,7 @@
           </ul>
           
           <p class="user">
-            <% if current_user %>
-              Hello, <%= current_user.name %>!
-              <%= link_to 'Logout', signout_path %>
-            <% else %>
-              <%= link_to 'Sign in with Github', '/auth/github' %>
-            <% end %>
+            <em>Project Discussion</em>
           </p>
         </div><!-- #header -->
         
