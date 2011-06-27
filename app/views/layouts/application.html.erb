@@ -15,12 +15,6 @@
 
           <h1><%= link_to('GitBook', root_path) %></h1>
           
-          <ul id="nav">
-            <% if current_user %>
-              <li><%= link_to('My Repositories', repositories_path(current_user.name))%></li>
-            <% end %>
-          </ul>
-          
           <p class="user">
             <em>Project Discussion</em>
           </p>

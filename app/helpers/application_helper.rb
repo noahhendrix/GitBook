@@ -15,9 +15,9 @@ module ApplicationHelper
     ].join(' / ')
   end
   
-  def link_to_user(username)
+  def link_to_user(username = nil, text = nil)
     return 'Unknown' if username.blank?
-    link_to(username, "https://github.com/#{username}")
+    link_to((text || username), "https://github.com/#{username}")
   end
   
   def user_path(username)

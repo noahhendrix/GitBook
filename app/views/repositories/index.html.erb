@@ -1,6 +1,7 @@
 <% title("#{@username}'s Profile") %>
 
-<% content_block("Repositories for #{@username}") do %>
+<% content_block("Repositories for #{@username}",
+                  link: link_to_user(@username, 'See on GitHub')) do %>
   <ul>
     <% @repositories.each do |name| %>
       <li><%= link_to(name, repository_path(@username, name)) %></li>
