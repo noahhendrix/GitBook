@@ -26,7 +26,7 @@ $(function() {
     
     $(this).removeClass('focused');
     
-  }).trigger('unfocused');
+  }).trigger('unfocused').first().addClass('focused');
   
   //keyboard navigation through events
   $(document.documentElement).keyup(function(event) {
