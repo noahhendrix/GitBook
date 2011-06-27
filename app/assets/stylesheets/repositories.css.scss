@@ -14,12 +14,20 @@ form {
 
 .event {
   border-bottom: 1px solid #ddd;
+  cursor: pointer;
   margin-bottom: 15px;
   
   &.repo-activity {
-    opacity: .5;
+    opacity: 0.5;
+    
+    p { display: none; }
     
     &:hover, &.focused { opacity: 1.0; }
+    &.focused {
+      cursor: default;
+      
+      p { display: block; }
+    }
   }
   
   &.notice {
