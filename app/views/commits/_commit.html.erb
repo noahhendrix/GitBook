@@ -1,8 +1,8 @@
 <div class="event repo-activity">
   <h4>
     <%= link_to_user(commit.username) %> commited
-    <%= link_to(truncate(commit.commit_id, length: 20), commit.url, title: commit.commit_id) %>
-    <%= time_ago_or_exact_date(commit.committed_at) %>
+    <%= link_to(truncate(commit.number, length: 20), commit.url, title: commit.number) %>
+    <%= time_ago_or_exact_date(commit.occurred_at) %>
   </h4>
-  <p><%= simple_format(commit.message) %></p>
+  <p><%= simple_format(commit.body) %></p>
 </div>

@@ -2,7 +2,7 @@
   <h4>
     <%= link_to_user(pull.username) %>
     sent pull request <%= link_to("##{pull.number}", pull.url) %>
-    <%= time_ago_or_exact_date(pull.requested_at) %>
+    <%= time_ago_or_exact_date(pull.occurred_at) %>
   </h4>
   <h3><%= pull.title %></h3>
   <p><%= simple_format(pull.body, length: 250) %></p>
