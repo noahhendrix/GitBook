@@ -35,6 +35,7 @@ class Repository < ActiveRecord::Base
   
   #fetching from github
     def fetch_recent_activity
+      fetch_repository_info && save
       fetch_recent_commits
       fetch_recent_issues
       fetch_recent_pulls
