@@ -20,10 +20,14 @@ class Repository < ActiveRecord::Base
     def sorted_timeline(page=0, per=15)
       timeline_events.page(page).per(per)
     end
+    
+    def add_info_fetch_to_queue(opts = {})
+      Delayed::Job.enqueue(ActivityJob.new(self), (opts[:priority] || 3))
+    end
   
   #callbacks
     before_create :fetch_repository_info
-    after_create -> { Delayed::Job.enqueue(ActivityJob.new(self)) }
+    after_create :add_info_fetch_to_queue
   
   #create methods
     def self.find_or_create(username, repo_name)
