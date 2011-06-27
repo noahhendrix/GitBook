@@ -13,28 +13,36 @@ $(function() {
   
   //touch event to focus it
   $events.click(function(){
-    $events.removeClass('focused');
+    
+    $events.trigger('unfocused');
+    $(this).trigger('focused');
+    
+  }).live('focused', function(){
+    
     $(this).addClass('focused');
-  });
+    $.scrollTo(this, { duration: 500 });
+    
+  }).live('unfocused', function(){
+    
+    $(this).removeClass('focused');
+    
+  }).trigger('unfocused');
   
   //keyboard navigation through events
   $(document.documentElement).keyup(function(event) {
     var $selected = $events.filter('.focused').first();
-    if ($selected.length == 0)
-      $selected = $events.first();
-
-    $selected.removeClass('focused');
-    
     var $next;
     
-    if (event.keyCode == 74 || event.keyCode == 40)
-      $next = $selected.next('.event');
-    if (event.keyCode == 75 || event.keyCode == 38)
-      $next = $selected.prev('.event');
-      
-    $next.addClass('focused');
-    $.scrollTo(($next), {
-      duration: 500
-    });
+    if ($selected.length == 0)
+      $selected, $next = $events.first();
+    else {
+      if (event.keyCode == 74 || event.keyCode == 40)
+        $next = $selected.next('.event');
+      if (event.keyCode == 75 || event.keyCode == 38)
+        $next = $selected.prev('.event');
+    }
+    
+    $selected.trigger('unfocused');
+    $next.trigger('focused');
   });
 });
