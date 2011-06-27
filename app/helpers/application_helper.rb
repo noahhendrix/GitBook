@@ -10,7 +10,7 @@ module ApplicationHelper
   
   def linked_repo_slug(repo)
     [
-      link_to(repo.username, user_path(repo.user)),
+      link_to_user(repo.username),
       link_to(repo.name, repo_path(repo))
     ].join(' / ')
   end

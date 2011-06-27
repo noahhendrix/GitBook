@@ -4,8 +4,6 @@ class Repository < ActiveRecord::Base
   acts_as_commentable
   
   #associations
-    belongs_to :user
-    
     has_many :commits, dependent: :destroy
     has_many :issues, dependent: :destroy
     has_many :pulls, dependent: :destroy
@@ -14,10 +12,6 @@ class Repository < ActiveRecord::Base
     has_many :timeline_events, as: :subject, dependent: :destroy
   
   #attributes
-    def username
-      user.name
-    end
-    
     def slug
       [username, name].join('/')
     end
@@ -28,26 +22,12 @@ class Repository < ActiveRecord::Base
     end
   
   #callbacks
-    after_create lambda { Delayed::Job.enqueue(ActivityJob.new(self)) }
+    before_create :update_with_repository_info
+    after_create -> { Delayed::Job.enqueue(ActivityJob.new(self)) }
   
-  #class methods
-    def self.find_by_username_and_name(username, name)
-      joins(:user).where('users.name LIKE ? AND repositories.name LIKE ?', username, name).first
-    end
-    
-    def self.create_by_username_and_name(username, name)
-      user = User.find_or_create_by_name(username)
-      repo = build_from_github("#{username}/#{name}")
-      user.repositories << repo
-      repo
-    end
-    
-    def self.find_or_create(username, name)
-      begin
-        find_by_username_and_name(username, name) || create_by_username_and_name(username, name)
-      rescue Octokit::NotFound => e
-        raise ActiveRecord::RecordNotFound
-      end
+  #create methods
+    def self.find_or_create(username, repo_name)
+      find_by_slug(username, repo_name).first || create!(username: username, name: repo_name)
     end
   
   #constants
@@ -60,10 +40,32 @@ class Repository < ActiveRecord::Base
       fetch_recent_pulls
     end
   
+  #scopes
+    scope :find_by_slug, ->(username, name) {
+      where('repositories.username LIKE ? and repositories.name LIKE ?', username, name)
+    }
+  
+  #validations
+    validate :exists_on_github?
+  
   private
-    def self.build_from_github(slug)
-      github_info = Octokit.repo(slug)
-      new(name: github_info[:name], description: github_info[:description], url: github_info[:url])
+    def exists_on_github?
+      begin
+        check_for_repository
+      rescue Octokit::NotFound => e
+        raise ActiveRecord::RecordNotFound
+      end
+    end
+    
+    def repository_info
+      @repository_info ||= Octokit.repo(slug)
+    end
+    alias_method :check_for_repository, :repository_info
+    
+    def update_with_repository_info
+      [:name, :description, :url].each do |attribute|
+        send("#{attribute.to_s}=", repository_info[attribute])
+      end
     end
     
     def fetch_recent_commits(limit=5)

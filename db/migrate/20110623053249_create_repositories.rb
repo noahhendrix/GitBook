@@ -1,7 +1,7 @@
 class CreateRepositories < ActiveRecord::Migration
   def change
     create_table :repositories do |t|
-      t.integer :user_id
+      t.string :username
       t.string :name
       t.text :description
       t.string :url
@@ -9,6 +9,7 @@ class CreateRepositories < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :repositories, :name
+    add_index :repositories, [:username, :name]
+    add_index :repositories, :username
   end
 end
