@@ -3,7 +3,8 @@ class RepositoriesController < ApplicationController
   respond_to :html, :json
   
   def index
-    @user = User.find_or_create_by_name(params[:username])
+    @username = params[:username]
+    @repositories = Repository.fetch_all_repositories_for_user(params[:username])
   end
 
   def show

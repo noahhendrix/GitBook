@@ -39,11 +39,16 @@ class Repository < ActiveRecord::Base
       fetch_recent_issues
       fetch_recent_pulls
     end
+    
+    def self.fetch_all_repositories_for_user(username)
+      Octokit.repos(username).map(&:name)
+    end
   
   #scopes
     scope :find_by_slug, ->(username, name) {
       where('repositories.username LIKE ? and repositories.name LIKE ?', username, name)
     }
+    scope :for_user, ->(username) { where('repositories.username = ?', username) }
   
   #validations
     validate :exists_on_github?

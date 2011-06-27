@@ -10,7 +10,7 @@ module ApplicationHelper
   
   def linked_repo_slug(repo)
     [
-      link_to_user(repo.username),
+      link_to(repo.username, user_path(repo.username)),
       link_to(repo.name, repo_path(repo))
     ].join(' / ')
   end
@@ -20,8 +20,8 @@ module ApplicationHelper
     link_to(username, "https://github.com/#{username}")
   end
   
-  def user_path(user)
-    repositories_path(user.name)
+  def user_path(username)
+    repositories_path(username)
   end
   
   def repo_path(repo)

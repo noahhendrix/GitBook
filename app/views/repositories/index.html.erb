@@ -1,9 +1,9 @@
-<% title("#{@user.name}'s Profile") %>
+<% title("#{@username}'s Profile") %>
 
-<% content_block("Repositories for #{@user.name}") do %>
+<% content_block("Repositories for #{@username}") do %>
   <ul>
-    <% @user.repositories.each do |r| %>
-      <li><%= link_to(r.name, repository_path(@user.name, r.name)) %></li>
+    <% @repositories.each do |name| %>
+      <li><%= link_to(name, repository_path(@username, name)) %></li>
     <% end %>
   </ul>
 <% end %>
