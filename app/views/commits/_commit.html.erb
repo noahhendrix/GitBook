@@ -4,5 +4,5 @@
     <%= time_ago_or_exact_date(commit.committed_at) %>
   </h4>
   <h3><%= link_to(truncate(commit.commit_id, length: 20), commit.github_url, title: commit.commit_id) %></h3>
-  <p><%= commit.message %></p>
+  <p><%= simple_format(commit.message) %></p>
 </div>

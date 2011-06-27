@@ -4,5 +4,5 @@
     <%= time_ago_or_exact_date(issue.opened_at) %>
   </h4>
   <h3><%= issue.title %></h3>
-  <p><%= truncate(issue.body, length: 250) %></p>
+  <p><%= simple_format(issue.body, length: 250) %></p>
 </div>

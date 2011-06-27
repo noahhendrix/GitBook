@@ -4,5 +4,5 @@
     <%= time_ago_or_exact_date(pull.requested_at) %>
   </h4>
   <h3><%= pull.title %></h3>
-  <p><%= truncate(pull.body, length: 250) %></p>
+  <p><%= simple_format(pull.body, length: 250) %></p>
 </div>
