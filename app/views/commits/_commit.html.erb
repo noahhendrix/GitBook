@@ -1,5 +1,5 @@
 <div class="event repo-activity">
-  <h4>
+  <h4 class="meta">
     <%= link_to_user(commit.username) %> commited
     <%= link_to(truncate(commit.number, length: 20), commit.url, title: commit.number) %>
     <%= time_ago_or_exact_date(commit.occurred_at) %>

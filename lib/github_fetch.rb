@@ -29,6 +29,7 @@ class GitHubFetch
   end
   
   def unfiltered_issues(params = {})
+    self.class.headers('Accept' => 'application/vnd.github-issue.html+json;application/json')
     get('/issues', params)
   end
     

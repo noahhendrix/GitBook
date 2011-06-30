@@ -1,9 +1,9 @@
 <div class="event repo-activity">
-  <h4>
+  <h4 class="meta">
     <%= link_to_user(issue.username) %>
     created issue <%= link_to("##{issue.number}", issue.url) %>
     <%= time_ago_or_exact_date(issue.occurred_at) %>
   </h4>
-  <h3><%= issue.title %></h3>
-  <p><%= simple_format(issue.body, length: 250) %></p>
+  <h3 class="title"><%= issue.title %></h3>
+  <p><%= issue.body.html_safe %></p>
 </div>

@@ -12,7 +12,7 @@ class Issue < RepositoryEvent
         number: api_hash['number'],
         username: api_hash['user']['login'],
         title: api_hash['title'],
-        body: api_hash['body'],
+        body: api_hash['body_html'],
         occurred_at: api_hash['created_at'],
         url: api_hash['html_url']
       }
