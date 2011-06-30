@@ -6,7 +6,8 @@ gem 'rails', '3.1.0.rc4'
 gem 'omniauth', '~> 0.2.6'
 
 # Github Integration
-gem 'octokit'
+gem 'httparty'
+gem 'hashie'
 
 # Views
 gem 'block_helpers'
